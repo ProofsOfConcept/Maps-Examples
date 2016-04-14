@@ -135,3 +135,23 @@
 .map-canvas {
     height: 600px;
 }
+
+.map-selects {
+    position: absolute;
+    top: 60px;
+    left: 46px;
+    width: 50%;
+}
+
+.cbcidadesoff {
+    display: none;
+}
+
+.cbcidadeson {
+    display: block;
+}
+
+.col-curta {
+    margin: 0 5px 0 0;
+    background: #ffffff;
+}

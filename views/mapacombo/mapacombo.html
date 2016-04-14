@@ -12,6 +12,24 @@
                 </div>
                 <div class="panel-body">
                     <div id="map_canvas" class="map-canvas"></div>
+                    <div class="map-selects">
+                        <div class="row">
+                            <div class="col-xs-5 col-curta">
+                                <select class="form-control" id="cbestados"
+                                        ng-options="estado.nome for estado in estados" ng-model="estado"
+                                        ng-change="estadoChange(estado)">
+                                    <option value="">-- Estado --</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-5 col-curta" ng-class="cbcidade">
+                                <select class="form-control" id="cbcidades"
+                                        ng-options="cidade for cidade in cidades" ng-model="cidade"
+                                        ng-change="cidadeChange(cidade)">
+                                    <option value="">-- Cidade --</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

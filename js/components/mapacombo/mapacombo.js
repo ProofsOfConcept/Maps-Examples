@@ -1,9 +1,19 @@
-angular.module('mapexamples').controller('MapaComboController', ['$scope', '$rootScope', '$state', '$http', '$filter', '$modal',
-    function ($scope, $rootScope, $state, $http, $filter, $modal) {
+angular.module('mapexamples').controller('MapaComboController', ['$scope', '$rootScope', '$state', '$http',
+    '$filter', '$modal', 'Listas',
+    function ($scope, $rootScope, $state, $http, $filter, $modal, Listas) {
         $scope.mapaComboInit = function () {
             waitingDialog.show();
 
             drawMap();
+
+            $scope.cbcidade = "cbcidadesoff";
+            $scope.cidades = [];
+            $scope.estados = [];
+            $scope.estado = {};
+            $scope.cidade = {};
+
+            preencheComboEstado();
+
             $scope.markersPositions = [];
             $scope.markers = [];
             $scope.sites = [];
@@ -16,10 +26,26 @@ angular.module('mapexamples').controller('MapaComboController', ['$scope', '$roo
             verificarAlarmes();
             setInterval(function () {
                 verificarAlarmes()
-            }, 15000);
+            }, 60000);
 
             waitingDialog.hide();
         };
+
+        $scope.estadoChange = function (estado) {
+            if (estado) {
+                $scope.cidades = estado.cidades;
+                $scope.cbcidade = "cbcidadeson";
+
+            } else {
+                $scope.cidades = [];
+                $scope.cbcidade = "cbcidadesoff";
+
+            }
+        };
+
+        function preencheComboEstado() {
+            $scope.estados = Listas.estadoscidades.estados;
+        }
 
         function drawMap() {
             var mapDiv = document.getElementById("map_canvas");
@@ -78,7 +104,7 @@ angular.module('mapexamples').controller('MapaComboController', ['$scope', '$roo
             ajustarAosPontos();
         }
 
-        function ajustarAosPontos () {
+        function ajustarAosPontos() {
             for (var a = 0, LtLgLen = $scope.markersPositions.length; a < LtLgLen; a++) {
                 $scope.bounds.extend($scope.markersPositions[a]);
             }
@@ -91,19 +117,19 @@ angular.module('mapexamples').controller('MapaComboController', ['$scope', '$roo
         function drawMarkers() {
             setAllMap(null);
             clearMarkersPositions();
-            for(var z in $scope.results) {
+            for (var z in $scope.results) {
                 var result = $scope.results[z];
                 var latLng = new google.maps.LatLng(result[1], result[2]);
                 addMarker(latLng, result);
             }
         }
 
-        function addMarker(latLng, result){
+        function addMarker(latLng, result) {
             $scope.markersPositions.push(latLng);
             var marker = new google.maps.Marker({
                 position: latLng,
                 map: $scope.map,
-                title:  " (" + result[3] + ")"
+                title: " (" + result[3] + ")"
             });
             $scope.markers.push(marker);
         }
