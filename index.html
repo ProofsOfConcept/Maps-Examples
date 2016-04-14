@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html lang="pt-BR" ng-app="mapexamples" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html lang="pt-BR" ng-app="mapexamples" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html lang="pt-BR" ng-app="mapexamples" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="pt-BR" ng-app="mapexamples" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
+    <meta name="description" content="">
+    <meta name="viewport"
+          content="minimal-ui, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
+    <title>Testes com API do Maps</title>
+
+    <link rel="stylesheet" href="css/assets/bootstrap.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <script type="text/javascript"
+            src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDZICQOTaxBSj52EYt9ddsSagoRMQjr3Wg"></script>
+
+</head>
+<body ng-app="mapexamples">
+
+<div class="m-app-loading" ng-animate-children>
+    <style type="text/css">
+        div.m-app-loading {
+            position: fixed;
+        }
+
+        div.m-app-loading div.animated-container {
+            background-color: #2196F3;
+            bottom: 0;
+            left: 0;
+            opacity: 1.0;
+            position: fixed;
+            right: 0;
+            top: 0;
+            z-index: 999999;
+        }
+
+        /* Used to initialize the ng-leave animation state. */
+        div.m-app-loading div.animated-container.ng-leave {
+            opacity: 1.0;
+            transition: all linear 200ms;
+            -webkit-transition: all linear 200ms;
+        }
+
+        /* Used to set the end properties of the ng-leave animation state. */
+        div.m-app-loading div.animated-container.ng-leave-active {
+            opacity: 0;
+        }
+
+        div.m-app-loading div.messaging {
+            color: #FFFFFF;
+            font-family: monospace;
+            left: 0;
+            margin-top: -37px;
+            position: absolute;
+            right: 0;
+            text-align: center;
+            top: 50%;
+        }
+
+        div.m-app-loading h1 {
+            font-size: 26px;
+            line-height: 35px;
+            margin: 0 0 20px 0;
+        }
+
+        div.m-app-loading p {
+            font-size: 18px;
+            line-height: 14px;
+            margin: 0;
+        }
+    </style>
+
+    <div class="animated-container">
+        <div class="messaging">
+            <h1>
+                Maps Examples esta sendo carregado...
+            </h1>
+
+            <p>
+                Por favor, aguarde e confie
+            </p>
+        </div>
+    </div>
+</div>
+
+<div id="wrapper">
+
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" ui-sref="home">Maps Examples</a>
+        </div>
+
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li>
+                        <a ui-sref="home"><i class="glyphicon glyphicon-dashboard"></i> Home</a>
+                    </li>
+
+                    <li>
+                        <a ui-sref="mapacombo"><i class="glyphicon glyphicon-map-marker"></i> Mapa Combo</a>
+                    </li>
+
+                    <li>
+                        <a ui-sref="mapacombo"><i class="glyphicon glyphicon-map-marker"></i> Mapa</a>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div>
+        <!-- /.navbar-static-side -->
+    </nav>
+
+    <div id="page-wrapper">
+        <div ui-view class="mainsec"></div>
+    </div>
+
+</div>
+
+<script src="js/assets/angular.min.js"></script>
+<script src="js/assets/angular-animate.min.js"></script>
+<script src="js/assets/angular-ui-router.js"></script>
+<script src="js/assets/angular-resource.min.js"></script>
+<script src="js/assets/jquery.js"></script>
+
+<script src="js/assets/bootstrap.min.js"></script>
+<script src="js/assets/ui-bootstrap-tpls-0.13.4.min.js"></script>
+
+<script src="js/assets/waiting-for.js"></script>
+<script src="js/assets/papaparse.min.js"></script>
+
+<script src="js/mapexamples.js"></script>
+<script src="js/components/routes/routes.js"></script>
+<script src="js/components/services/services.js"></script>
+<script src="js/components/directives/directives.js"></script>
+
+<script src="js/components/home/home.js"></script>
+<script src="js/components/mapacombo/mapacombo.js"></script>
+
+</body>
+</html>
