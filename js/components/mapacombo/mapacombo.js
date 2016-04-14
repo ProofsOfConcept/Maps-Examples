@@ -8,6 +8,8 @@ angular.module('mapexamples').controller('MapaComboController', ['$scope', '$roo
             $scope.markers = [];
             $scope.sites = [];
             $scope.results = [];
+            $scope.bounds = new google.maps.LatLngBounds();
+
             $http.get("js/components/mapacombo/CLARO_SITES_LAT_LOG.csv")
                 .then(successSites, errorSites);
 
@@ -73,6 +75,14 @@ angular.module('mapexamples').controller('MapaComboController', ['$scope', '$roo
                 }
             }
             drawMarkers();
+            ajustarAosPontos();
+        }
+
+        function ajustarAosPontos () {
+            for (var a = 0, LtLgLen = $scope.markersPositions.length; a < LtLgLen; a++) {
+                $scope.bounds.extend($scope.markersPositions[a]);
+            }
+            $scope.map.fitBounds($scope.bounds);
         }
 
         function errorAlarmes(response) {
@@ -89,6 +99,7 @@ angular.module('mapexamples').controller('MapaComboController', ['$scope', '$roo
         }
 
         function addMarker(latLng, result){
+            $scope.markersPositions.push(latLng);
             var marker = new google.maps.Marker({
                 position: latLng,
                 map: $scope.map,
